@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { db } from "./firebase"; 
+import { collection, getDocs } from "firebase/firestore";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [docs, setDocs] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const querySnapshot = await getDocs(collection(db, "test"));
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setDocs(data);
+      } catch (err) {
+        console.error("Error fetching Firestore data:", err);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{ padding: "20px" }}>
+      <h1>🔥 Firebase Firestore Test</h1>
+      {docs.length > 0 ? (
+        <ul>
+          {docs.map((doc) => (
+            <li key={doc.id}>
+              <strong>{doc.id}:</strong> {JSON.stringify(doc)}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No data yet. Add a doc in Firestore → Collection: <b>test</b></p>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
