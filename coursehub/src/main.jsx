@@ -1,10 +1,25 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+import Home from "./pages/Home";
+import CoursePage from "./pages/CoursePage";
+import ProfilePage from "./pages/ProfilePage";
+import Settings from "./pages/Settings";
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <BrowserRouter>
+      <Routes>
+        <Route element={<App />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/course/:id" element={<CoursePage />} />
+          <Route path="/profilepage" element={<ProfilePage />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>
+);
