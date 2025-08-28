@@ -13,8 +13,8 @@ export default function App() {
           <div className="flex gap-2 text-sm">
             <NavLink to="/" end className={nav}>Home</NavLink>
             {/* Note: your route is /course/:id, so link to a real id */}
-            <NavLink to="/course/id" className={nav}>Course Page</NavLink>
-            <NavLink to="/profilepage" className={nav}>Profile Page</NavLink>
+            {/* <NavLink to="/course/id" className={nav}>Course Page</NavLink> */}
+            <NavLink to="/profilepage" className={nav}>Profile</NavLink>
             <NavLink to="/settings" className={nav}>Settings</NavLink>
           </div>
         </nav>
