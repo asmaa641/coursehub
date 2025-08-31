@@ -16,6 +16,7 @@ export default function App() {
             {/* <NavLink to="/course/id" className={nav}>Course Page</NavLink> */}
             <NavLink to="/profilepage" className={nav}>Profile</NavLink>
             <NavLink to="/settings" className={nav}>Settings</NavLink>
+            <NavLink to="/admin" className={nav}>Admin</NavLink>
           </div>
         </nav>
       </header>

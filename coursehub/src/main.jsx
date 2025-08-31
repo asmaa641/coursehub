@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import CoursePage from "./pages/CoursePage";
 import ProfilePage from "./pages/ProfilePage";
 import Settings from "./pages/Settings";
+import Admin from "./pages/Admin.jsx"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,6 +19,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/course/:id" element={<CoursePage />} />
           <Route path="/profilepage" element={<ProfilePage />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/Admin" element={<Admin />} />
+          
         </Route>
       </Routes>
     </BrowserRouter>
